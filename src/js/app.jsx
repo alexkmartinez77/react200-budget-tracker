@@ -1,7 +1,6 @@
 import React from 'react';
-
-import ExpenseEntries from './components/ExpenseEntries';
 import IncomeEntries from './components/IncomeEntries';
+import ExpenseEntries from './components/ExpenseEntries';
 import Summary from './components/Summary';
 
 export default class App extends React.Component {
@@ -13,15 +12,15 @@ export default class App extends React.Component {
         </div>
         <div className='row'>
           <div className='col-12 col-md-6 mb-4'>
-            <IncomeEntries/>
+            <IncomeEntries />
           </div>
           <div className='col-12 col-md-6 mb-4'>
-            <ExpenseEntries/>
+            <ExpenseEntries />
           </div>
         </div>
         <div className='row justify-content-center'>
           <div className='col-12 col-md-6'>
-            <Summary/>
+            <Summary />
           </div>
         </div>
       </div>
