@@ -10,7 +10,7 @@ import {
 export default class IncomeEntries extends React.Component {
   constructor(props) {
     super(props);
-
+    
     this.handleDescriptionInput = this.handleDescriptionInput.bind(this);
     this.handleAmountInput = this.handleAmountInput.bind(this);
     this.handleAddIncome = this.handleAddIncome.bind(this);

@@ -18,13 +18,13 @@ export default class ExpenseEntries extends React.Component {
 
   handleDescriptionInput(event) {
     // dispatch was provided by connect()
-    const { dispatch } = this.props;
+    const { dispatch } = this.props; //connect to props
     const { value } = event.target;
     dispatch(updateExpenseDescription(value));
   }
 
   handleAmountInput(event) {
-    const { dispatch } = this.props;
+    const { dispatch } = this.props; // connect to props
     const { value } = event.target;
     dispatch(updateExpenseAmount(value));
   }

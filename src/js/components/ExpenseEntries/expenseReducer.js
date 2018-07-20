@@ -30,7 +30,7 @@ const defaultState = {
         const { description, amount } = action.payload;
         return {
           description: '',
-          action: '',
+          amount: '',
           lineItems: [
             // here we have all the previous line items
             ...state.lineItems,
