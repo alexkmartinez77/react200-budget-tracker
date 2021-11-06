@@ -31,6 +31,7 @@ export default function ExpenseReducer(state = defaultState, action) {
 			return {
 				description: '',
 				action: '',
+				amount: '',
 				lineItems: [
 					// here we have all the previous line items
 					...state.lineItems,
