@@ -22,3 +22,10 @@ export function addIncome(description, amount) {
 		}
 	};
 }
+
+export function deleteIncome(index) {
+	return {
+	type: 'DELETE_INCOME',
+		payload: { index }
+	};
+}

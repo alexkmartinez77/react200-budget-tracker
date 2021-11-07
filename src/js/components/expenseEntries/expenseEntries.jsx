@@ -90,7 +90,7 @@ export default class ExpenseEntries extends React.Component {
                     <tr key={index}>
                       <td>{ lineItem.description }</td>
                       <td>${ lineItem.amount.toFixed(2) }</td>
-                      <td><a className="pointer" onClick={() => this.handleDeleteExpense(index) }><span className="material-icons danger float-right">delete</span></a></td>
+                      <td><a className="pointer text-danger" onClick={() => this.handleDeleteExpense(index) }><span className="material-icons float-right">delete</span></a></td>
                     </tr>
                   ))
                 }

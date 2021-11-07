@@ -41,6 +41,19 @@ export default function IncomeReducer(state = defaultState, action) {
 			};
 		}
 
+		case 'DELETE_INCOME': {
+			const { index } = action.payload;
+			return {
+				description: '',
+				action: '',
+				amount: '',
+				lineItems: [
+				...state.lineItems.slice(0, index),
+				...state.lineItems.slice(index + 1)
+				]
+			};
+		}
+
 		default: {
 			return state;
 		}
