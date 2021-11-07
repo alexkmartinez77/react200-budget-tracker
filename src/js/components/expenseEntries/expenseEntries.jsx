@@ -83,6 +83,7 @@ export default class ExpenseEntries extends React.Component {
                     <tr>
                       <td>{ lineItem.description }</td>
                       <td>${ lineItem.amount.toFixed(2) }</td>
+                      <td><span className="material-icons">delete</span></td>
                     </tr>
                   ))
                 }
