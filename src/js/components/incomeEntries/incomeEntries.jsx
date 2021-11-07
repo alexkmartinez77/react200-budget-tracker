@@ -1,5 +1,5 @@
 import React from 'react';
-
+import PropTypes from 'prop-types';
 // We'll need to import all those action creators.
 import {
   updateIncomeDescription,
@@ -106,4 +106,9 @@ export default class IncomeEntries extends React.Component {
       </div>
     );
   }
+}
+
+IncomeEntries.propTypes = {
+  description: PropTypes.string.isRequired,
+  amount: PropTypes.string.isRequired,
 }
