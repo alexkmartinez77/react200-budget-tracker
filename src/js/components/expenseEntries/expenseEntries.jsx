@@ -1,6 +1,6 @@
 import React from 'react';
 //Action Creators
-import { updateExpenseDescription, updateExpenseAmount, addExpense} from './expenseActions';
+import { updateExpenseDescription, updateExpenseAmount, addExpense, deleteExpense} from './expenseActions';
 
 export default class ExpenseEntries extends React.Component {
   constructor(props) {
@@ -13,6 +13,7 @@ export default class ExpenseEntries extends React.Component {
     this.handleDescriptionInput = this.handleDescriptionInput.bind(this);
     this.handleAmountInput = this.handleAmountInput.bind(this);
     this.handleAddExpense = this.handleAddExpense.bind(this);
+    this.handleDeleteExpense = this.handleDeleteExpense.bind(this);
   }
 
   handleDescriptionInput(event) {
@@ -31,6 +32,11 @@ export default class ExpenseEntries extends React.Component {
   handleAddExpense() {
     const { description, amount, dispatch } = this.props;
     dispatch(addExpense(description, amount));
+  }
+
+  handleDeleteExpense(index){
+    const { dispatch } = this.props;
+    dispatch(deleteExpense(index));
   }
 
   render() {
@@ -83,7 +89,7 @@ export default class ExpenseEntries extends React.Component {
                     <tr key={index}>
                       <td>{ lineItem.description }</td>
                       <td>${ lineItem.amount.toFixed(2) }</td>
-                      <td><a className="pointer"><span className="material-icons danger float-right">delete</span></a></td>
+                      <td><a className="pointer" onClick={() => this.handleDeleteExpense(index) }><span className="material-icons danger float-right">delete</span></a></td>
                     </tr>
                   ))
                 }
