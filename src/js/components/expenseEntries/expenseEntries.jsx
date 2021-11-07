@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 //Action Creators
 import { updateExpenseDescription, updateExpenseAmount, addExpense, deleteExpense} from './expenseActions';
 
@@ -53,7 +54,7 @@ export default class ExpenseEntries extends React.Component {
                 type='text'
                 className='form-control'
                 id='expense-description'
-                value={ description }
+                value={ description}
                 onChange={ this.handleDescriptionInput }
               />
             </div>
@@ -100,4 +101,9 @@ export default class ExpenseEntries extends React.Component {
       </div>
     );
   }
+}
+
+ExpenseEntries.propTypes = {
+  description: PropTypes.string.isRequired,
+  amount: PropTypes.string.isRequired,
 }
