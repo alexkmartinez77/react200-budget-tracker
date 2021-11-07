@@ -79,11 +79,11 @@ export default class ExpenseEntries extends React.Component {
               </thead>
               <tbody>
                 {
-                  lineItems.map(lineItem => (
-                    <tr>
+                  lineItems.map((lineItem, index) => (
+                    <tr key={index}>
                       <td>{ lineItem.description }</td>
                       <td>${ lineItem.amount.toFixed(2) }</td>
-                      <td><span className="material-icons">delete</span></td>
+                      <td><a className="pointer"><span className="material-icons danger float-right">delete</span></a></td>
                     </tr>
                   ))
                 }
