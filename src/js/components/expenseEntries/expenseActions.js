@@ -22,3 +22,10 @@ export function addExpense(description, amount) {
 		}
 	};
 }
+
+export function deleteExpense(index) {
+	return {
+	type: 'DELETE_EXPENSE',
+		payload: { index }
+	};
+}
