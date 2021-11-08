@@ -1,30 +1,30 @@
 import React from 'react';
-
-// We'll need to import all those action creators.
-import {
-  updateExpenseDescription,
-  updateExpenseAmount,
-  addExpense
-} from './expenseActions';
+//Action Creators
+import { updateExpenseDescription, updateExpenseAmount, addExpense, deleteExpense} from './expenseActions';
 
 export default class ExpenseEntries extends React.Component {
   constructor(props) {
     super(props);
 
+    // Here we're binding these methods to the context
+    // of the components. This only has to be done,
+    // because these methods are called back by
+    // event emitters (which lose context).
     this.handleDescriptionInput = this.handleDescriptionInput.bind(this);
     this.handleAmountInput = this.handleAmountInput.bind(this);
     this.handleAddExpense = this.handleAddExpense.bind(this);
+    this.handleDeleteExpense = this.handleDeleteExpense.bind(this);
   }
 
   handleDescriptionInput(event) {
     // dispatch was provided by connect()
-    const { dispatch } = this.props; //connect to props
+    const { dispatch } = this.props;
     const { value } = event.target;
     dispatch(updateExpenseDescription(value));
   }
 
   handleAmountInput(event) {
-    const { dispatch } = this.props; // connect to props
+    const { dispatch } = this.props;
     const { value } = event.target;
     dispatch(updateExpenseAmount(value));
   }
@@ -34,7 +34,13 @@ export default class ExpenseEntries extends React.Component {
     dispatch(addExpense(description, amount));
   }
 
+  handleDeleteExpense(index){
+    const { dispatch } = this.props;
+    dispatch(deleteExpense(index));
+  }
+
   render() {
+    // These values were provided by connect()
     const { description, amount, lineItems } = this.props;
     return (
       <div className='card border-danger mb-3'>
@@ -78,11 +84,12 @@ export default class ExpenseEntries extends React.Component {
                 </tr>
               </thead>
               <tbody>
-              {
-                  lineItems.map(lineItem => (
-                    <tr>
+                {
+                  lineItems.map((lineItem, index) => (
+                    <tr key={index}>
                       <td>{ lineItem.description }</td>
                       <td>${ lineItem.amount.toFixed(2) }</td>
+                      <td><a className="pointer text-danger" onClick={() => this.handleDeleteExpense(index) }><span className="material-icons float-right">delete</span></a></td>
                     </tr>
                   ))
                 }

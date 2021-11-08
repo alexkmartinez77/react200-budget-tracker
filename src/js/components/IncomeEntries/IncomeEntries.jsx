@@ -1,19 +1,24 @@
 import React from 'react';
-
 // We'll need to import all those action creators.
 import {
   updateIncomeDescription,
   updateIncomeAmount,
-  addIncome
+  addIncome,
+  deleteIncome
 } from './incomeActions';
 
 export default class IncomeEntries extends React.Component {
   constructor(props) {
     super(props);
-    
+
+    // Here we're binding these methods to the context
+    // of the components. This only has to be done,
+    // because these methods are called back by
+    // event emitters (which lose context).
     this.handleDescriptionInput = this.handleDescriptionInput.bind(this);
     this.handleAmountInput = this.handleAmountInput.bind(this);
     this.handleAddIncome = this.handleAddIncome.bind(this);
+    this.handleDeleteIncome = this.handleDeleteIncome.bind(this);
   }
 
   handleDescriptionInput(event) {
@@ -34,7 +39,13 @@ export default class IncomeEntries extends React.Component {
     dispatch(addIncome(description, amount));
   }
 
+  handleDeleteIncome(index){
+    const { dispatch } = this.props;
+    dispatch(deleteIncome(index));
+  }
+
   render() {
+    // These values were provided by connect()
     const { description, amount, lineItems } = this.props;
     return (
       <div className='card border-success mb-3'>
@@ -78,11 +89,12 @@ export default class IncomeEntries extends React.Component {
                 </tr>
               </thead>
               <tbody>
-              {
-                  lineItems.map(lineItem => (
-                    <tr>
+                {
+                  lineItems.map((lineItem, index) => (
+                    <tr key={index}>
                       <td>{ lineItem.description }</td>
                       <td>${ lineItem.amount.toFixed(2) }</td>
+                      <td><a className="pointer text-success" onClick={() => this.handleDeleteIncome(index) }><span className="material-icons float-right">delete</span></a></td>
                     </tr>
                   ))
                 }

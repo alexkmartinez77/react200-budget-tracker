@@ -1,11 +1,10 @@
 import React from 'react';
 
 function calculateSum(lineItems) {
-   return lineItems.reduce((acc, lineItem) => acc + lineItem.amount, 0);
+  return lineItems.reduce((acc, lineItem) => acc + lineItem.amount, 0);
 }
 
 function formatCurrency(amount) {
-  console.log(amount);
   if (amount >= 0) {
     const dollars = Math.floor(amount);
     const cents = Math.floor((amount - dollars) * 100).toString().padEnd(2, '0');
@@ -22,12 +21,10 @@ class Summary extends React.Component {
     const { incomeItems, expenseItems } = this.props;
 
     const incomeTotal = calculateSum(incomeItems);
-    //console.log(incomeTotal);
     const expenseTotal = calculateSum(expenseItems);
-    //console.log(expenseTotal);
     const difference = Math.round(incomeTotal - expenseTotal);
-    //console.log(difference);
-      return (
+
+    return (
       <div className='card border-info mb-3'>
         <div className='card-header text-white bg-info'>Summary</div>
         <div className='card-body'>
@@ -38,7 +35,7 @@ class Summary extends React.Component {
                 <p>{ formatCurrency(incomeTotal) }</p>
               </div>
               <div className='col-6 text-center'>
-                <h6 className='h6 strong'>Total Expense</h6>
+                <h6 className='h6 strong'>Total Expenses</h6>
                 <p>{ formatCurrency(expenseTotal) }</p>
               </div>
             </div>
